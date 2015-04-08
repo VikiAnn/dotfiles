@@ -1,0 +1,1 @@
+/Users/viki/.bash_profile
