@@ -8,6 +8,8 @@ filetype plugin on
 
 colorscheme monokai
 
+let g:rspec_command = "!zrspec {spec}"
+
 let mapleader = " "
 
 map <Leader>t :call RunCurrentSpecFile()<CR>
@@ -15,14 +17,25 @@ map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
+
 map <Leader>w :w!<CR>
-map <Leader>q :wq<CR>
 map <Leader>x :bd<CR>
+map <Leader>d <PageDown>
+map <Leader>u <PageUp>
+
+" Get rid of trailing spaces on lines
+map <silent> <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 autocmd FileType go,ruby,eruby,yaml,javascript,html.handlebars setlocal ai sw=2 sts=2 et
 set expandtab
 set shiftwidth=2
 set softtabstop=2
+
+" use an undo file
+set undofile
+set hidden
+" set a directory to store the undo history
+set undodir=~/.vim/vimundo/
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -62,4 +75,4 @@ endfunction
 nnoremap <silent> <leader>e :call Preserve("normal! gg=G")<cr>")"
 
 " Wild ignore for ctrlp (it ignores stuff)
-set wildignore+=*tmp/*,*coverage/*,*bower_components/*,*node_modules/
+set wildignore+=*tmp/*,*coverage/*,*bower_components/*,*node_modules/,*doc/*
